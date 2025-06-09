@@ -3,6 +3,8 @@ import { useState } from 'react';
 export function WorkersMember({ person, onToggleCheck, onEditPerson }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
+      imie: person.imie,
+      nazwisko: person.nazwisko,
       rola: person.rola,
       doswiadczenie: person.doswiadczenie,
       opis: person.opis,
@@ -15,6 +17,8 @@ export function WorkersMember({ person, onToggleCheck, onEditPerson }) {
   function  handleCancelClick() {
     setIsEditing(false);
     setEditData({
+        imie: person.imie,
+        nazwisko: person.nazwisko,
         rola: person.rola,
         doswiadczenie: person.doswiadczenie,
         opis: person.opis,
@@ -46,8 +50,20 @@ export function WorkersMember({ person, onToggleCheck, onEditPerson }) {
           onChange={() => onToggleCheck(person.id)}
         />
       </td>
-      <td>{person.imie}</td>
-      <td>{person.nazwisko}</td>
+      <td>
+          {isEditing ? (
+              <input type="text" name="imie" className="form-control" value={editData.imie} onChange={handleChange} />
+          ) : (
+              person.imie
+          )}
+      </td>
+      <td>
+        {isEditing ? (
+            <input type="text" name="nazwisko" className="form-control" value={editData.nazwisko} onChange={handleChange} />
+        ) : (
+            person.nazwisko
+        )}
+      </td>
       <td>
         {isEditing ? (
             <input type="text" name="rola" className="form-control" value={editData.rola} onChange={handleChange} />
@@ -71,7 +87,7 @@ export function WorkersMember({ person, onToggleCheck, onEditPerson }) {
       </td>
       <td>
           <div>Dodano: {formatDate(person.dateAdd)}</div>
-          {person.dateModificatuin && <div className="text-muted">Zmieniono: {formatDate(person.dateModificatuin)}</div>}
+          {person.dateModificatuin && <div className="text-danger fw-bold">Zmieniono: {formatDate(person.dateModificatuin)}</div>}
       </td>
       <td>
         {isEditing ? (
