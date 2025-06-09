@@ -45,17 +45,18 @@ export default function App() {
     )
   }
 
-  function handleEditPerson(id, updateDate) {
-      setWorkers.map(person => 
-        person.id == id ? {
-          ...person,
-          ...updateDate,
-          dateModificatuin: new Date()
-        }
-        : person
-      )
-  }
-
+function handleEditPerson(id, updateDate) {
+  setWorkers((prevWorkers) =>
+    prevWorkers.map((person) =>
+      person.id === id
+        ? { 
+          ...person, 
+          ...updateDate, 
+          dateModificatuin: new Date() 
+        }: person
+    )
+  );
+}
   function handleRestList() {
     setWorkers([...initialWorkers])
     setFilter("Wszyscy")
