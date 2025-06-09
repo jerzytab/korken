@@ -1,7 +1,6 @@
 export function Sort({ onSortChange }) {
     return(
         <div>
-            <h1>Sortuj</h1>
             <div class="btn-group" role="group" aria-label="sort">
                 <p class="me-5">Doświadczenie</p>
                 <button type="button" class="btn btn-light" onClick={() => onSortChange('asc')}>
